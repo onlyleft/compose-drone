@@ -1,0 +1,23 @@
+version: "3.3"
+
+services:
+  drone:
+    image: drone/drone:2.12.1
+    networks:
+      - traefik_backend
+    volumes:
+      - data:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.services.frontend.loadbalancer.server.port=9000"
+      - "traefik.http.routers.frontend.service=frontend"
+      - "traefik.http.routers.frontend.tls.certresolver=leresolver"
+
+
+networks:
+  traefik_backend:
+    external: true
+
+volumes:
+  data:
