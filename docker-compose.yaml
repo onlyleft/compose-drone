@@ -21,12 +21,14 @@ services:
     image: drone/drone-runner-docker:1
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - traefik_backend
     environment:
       - DRONE_GITHUB_CLIENT_ID=$DRONE_GITHUB_CLIENT_ID
       - DRONE_GITHUB_CLIENT_SECRET=$DRONE_GITHUB_CLIENT_SECRET
       - DRONE_RPC_SECRET=$DRONE_RPC_SECRET
       - DRONE_RPC_PROTO=$DRONE_SERVER_PROTO
-      - DRONE_RPC_HOST=drone
+      - DRONE_RPC_HOST=$DRONE_SERVER_HOST
       - DRONE_RUNNER_CAPACITY=$RUNNER_CAPACITY
       - DRONE_RUNNER_NAME=compose-runner
 
