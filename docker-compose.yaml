@@ -15,10 +15,9 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.drone.rule=Host(`$DRONE_SERVER_HOST`)"
-      - "traefik.http.routers.drone.entrypoints=websecure"
-      - "traefik.http.services.drone.loadbalancer.server.port=443"
-      - "traefik.http.routers.drone.service=drone"
-      - "traefik.http.routers.drone.tls.certresolver=leresolver"
+      - "traefik.http.routers.drone.tls=true"
+      # - "traefik.http.routers.drone.entrypoints=websecure"
+      # - "traefik.http.routers.drone.tls.certresolver=leresolver"
 
 
 networks:
